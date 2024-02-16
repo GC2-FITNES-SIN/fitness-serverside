@@ -3,6 +3,18 @@ const db = require('../config/mongoConn.js');
 const { ObjectId } = require('mongodb')
 
 class Routines {
+
+  static async searchRoutine(search) {
+    try { 
+
+        const data = await db.collection('routines').find({
+            routineName: { $regex: search, $options: 'i' } // Correctly using $options here
+        }).toArray()
+        return data
+    } catch(error) {
+        throw error
+    }
+  }
   static async getAllRoutines() {
     try {
       const routines = await db.collection('routines').find({}).toArray();
