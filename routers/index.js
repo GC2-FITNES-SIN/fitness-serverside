@@ -1,7 +1,7 @@
 // /routers/index.js
 const express = require("express");
 const authentication = require("../middlewares");
-const UserController = require("../controllers.js/user");
+const UserController = require("../controllers/UserController.js");
 const errorHandler = require("../middlewares/errorHandler");
 const router = express.Router();
 
