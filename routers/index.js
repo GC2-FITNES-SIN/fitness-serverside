@@ -1,7 +1,11 @@
 // /routers/index.js
 const express = require("express");
+const authentication = require("../middlewares");
+const UserController = require("../controllers.js/user");
+const errorHandler = require("../middlewares/errorHandler");
 const router = express.Router();
 
+<<<<<<< HEAD
 // Import controllers
 // const UserController = require('../controllers/UserController');
 const RoutineController = require('../controllers/RoutineController.js');
@@ -25,7 +29,14 @@ router.delete("/user-routines/:id", /* RoutineController.deleteUserRoutine */); 
 // Running History
 router.get("/running-history", /* RunningHistoryController.getRunningHistory */); // already filtered
 router.post("/running-history", /* RunningHistoryController.createRunningHistory */);
+=======
+// route here
+router.post("/register", UserController.register);
+router.post("/login", UserController.login)
+>>>>>>> 09d1cc0eb01acb5965a37cdcd300a57ed18ee38e
 
 // middleware here
+router.use(authentication)
+// router.use(errorHandler)
 
 module.exports = router;
