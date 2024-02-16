@@ -1,30 +1,41 @@
-// /controllers/RoutineControllers.js
-// /controllers/RoutineController.js
+// Import the Routines class
+const Routines = require('../models/routines'); // Adjust the path as necessary to correctly import the Routines class
 
 class RoutineController {
   
     // Get all routines or filter by category if a category query parameter is provided
-    static getAllRoutines(req, res) {
-      // Logic to retrieve all routines or filter by category
-      const { category } = req.query;
-      if (category) {
-        // TODO: Logic to filter routines by category and return them
-        res.status(200).json({ message: "Routines by category retrieved successfully", data: /* filteredData */ });
-      } else {
-        // TODO: Logic to return all routines
-        res.status(200).json({ message: "All routines retrieved successfully", data: /* allData */ });
-      }
+    static async getAllRoutines(req, res) {
+        const { category } = req.query;
+        try {
+            let data;
+            if (category) {
+                // Call getRoutinesByCategory from Routines class
+                data = await Routines.getRoutinesByCategory(category);
+                res.status(200).json({ message: "Routines by category retrieved successfully", data: data });
+            } else {
+                // Call getAllRoutines from Routines class
+                data = await Routines.getAllRoutines();
+                res.status(200).json({ message: "All routines retrieved successfully", data: data });
+            }
+        } catch (error) {
+            res.status(500).json({ message: "Error retrieving routines", error: error.message });
+        }
     }
   
     // Get a single routine by its ID
-    static getRoutineById(req, res) {
-      // Extract the id from req.params
-      const { id } = req.params;
-      // TODO: Logic to retrieve a routine by id
-      res.status(200).json({ message: "Routine retrieved successfully", data: /* routineData */ });
+    static async getRoutineById(req, res) {
+        const { id } = req.params;
+        try {
+            const data = await Routines.getRoutineById(id);
+            if (data) {
+                res.status(200).json({ message: "Routine retrieved successfully", data: data });
+            } else {
+                res.status(404).json({ message: "Routine not found" });
+            }
+        } catch (error) {
+            res.status(500).json({ message: "Error retrieving routine", error: error.message });
+        }
     }
-  
-  }
-  
-  module.exports = RoutineController;
-  
+}
+
+module.exports = RoutineController;
