@@ -1,11 +1,17 @@
 // Import the Routines class
 const Routines = require('../models/routines'); // Adjust the path as necessary to correctly import the Routines class
+const { redis } = require('../config/redisConn.js')
 
 class RoutineController {
   
     // Get all routines or filter by category if a category query parameter is provided
     static async getAllRoutines(req, res) {
         const { category, search } = req.query;
+
+        const redisPost = await redis.get("routines")
+        if(redisPost) {
+          return res.status(200).json({data: JSON.parse(redisPost)})
+        }
 
         if(search) {
           const data = await Routines.searchRoutine(search)
@@ -16,6 +22,9 @@ class RoutineController {
         try {
               // Call getAllRoutines from Routines class
               const data = await Routines.getAllRoutines();
+
+              await redis.set("routines", JSON.stringify(data))
+
               return res.status(200).json({ data });
             
         } catch (error) {
