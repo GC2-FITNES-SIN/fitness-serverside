@@ -5,18 +5,12 @@ class RoutineController {
   
     // Get all routines or filter by category if a category query parameter is provided
     static async getAllRoutines(req, res) {
-        const { category } = req.query;
+        const { category, search } = req.query;
         try {
-            let data;
-            if (category) {
-                // Call getRoutinesByCategory from Routines class
-                data = await Routines.getRoutinesByCategory(category);
-                res.status(200).json({ message: "Routines by category retrieved successfully", data: data });
-            } else {
-                // Call getAllRoutines from Routines class
-                data = await Routines.getAllRoutines();
-                res.status(200).json({ message: "All routines retrieved successfully", data: data });
-            }
+              // Call getAllRoutines from Routines class
+              const data = await Routines.getAllRoutines();
+              res.status(200).json({ data });
+            
         } catch (error) {
             res.status(500).json({ message: "Error retrieving routines", error: error.message });
         }

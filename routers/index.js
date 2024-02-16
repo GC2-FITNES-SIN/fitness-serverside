@@ -11,9 +11,9 @@ const RoutineController = require('../controllers/RoutineController.js');
 // const RunningHistoryController = require('../controllers/RunningHistoryController');
 
 // Routines
-router.get("/routines", /* RoutineController.getAllRoutines */);
-router.get("/routines/:id", /* RoutineController.getRoutineById */);
-router.get("/routines?category=", /* RoutineController.getRoutinesByCategory */); // This might conflict with the above get /routines endpoint
+router.get("/routines", RoutineController.getAllRoutines);
+router.get("/routines/:id", RoutineController.getRoutineById);
+router.get("/routines?category=", RoutineController.getAllRoutines); // This might conflict with the above get /routines endpoint
 
 // User Routines
 router.post("/user-routines", /* RoutineController.createUserRoutine */);
