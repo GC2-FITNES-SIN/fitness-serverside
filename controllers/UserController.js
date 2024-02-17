@@ -1,4 +1,7 @@
 const db = require("../config/mongoConn");
+const bcrypt = require("bcryptjs");
+const { comparePass, signToken } = require("../helpers/index");
+
 
 class UserController {
     static async register(req, res, next) {
@@ -25,14 +28,40 @@ class UserController {
 
             let newUser = await db.collection("users").insertOne(userInput);
 
-            res.status(201).json({message: "Register success"});
+            return res.status(201).json({message: "Register success"});
         } catch (error) {
-            // next(error);
-            console.log(error);
+            next(error);
         }
     };
 
-    static async login(req, res, next) {}
+    static async login(req, res, next) {
+        try {
+            const { username, password } = req.body;
+
+            if (!username) throw {name: "BadRequest", message: "Username is required"};
+            if (!password) throw {name: "BadRequest", message: "Password is required"};
+
+            const user = await db.collection("users").findOne({ username }); 
+
+            if (!user) throw {name: "NotFound", message: "Username not found"};
+
+            const match = await bcrypt.compare(password, user.password);
+
+            if (!match) throw {name: "Unauthorized", message: "Wrong password"};
+
+            const payload = signToken({
+                id: user._id,
+                username: user.username
+            });
+
+            const access_token = payload;
+
+            return res.status(200).json({message: "Login success", token: access_token});
+
+        } catch (error) {
+            
+        }
+    }
 }
 
 module.exports = UserController;

@@ -22,12 +22,12 @@ class RoutineController {
         try {
             const data = await Routines.getRoutineById(id);
             if (data) {
-                res.status(200).json({ message: "Routine retrieved successfully", data: data });
+                return res.status(200).json({ message: "Routine retrieved successfully", data: data });
             } else {
-                res.status(404).json({ message: "Routine not found" });
+                return res.status(404).json({ message: "Routine not found" });
             }
         } catch (error) {
-            res.status(500).json({ message: "Error retrieving routine", error: error.message });
+            return res.status(500).json({ message: "Error retrieving routine", error: error.message });
         }
     }
 }
