@@ -5,8 +5,8 @@ const { redis } = require('../config/redisConn.js')
 class RoutineController {
   
     // Get all routines or filter by category if a category query parameter is provided
-    static async getAllRoutines(req, res) {
-        const { category, search } = req.query;
+    static async getAllRoutines(req, res, next) {
+        const { search } = req.query;
 
         const redisPost = await redis.get("routines")
         if(redisPost) {
@@ -28,12 +28,12 @@ class RoutineController {
               return res.status(200).json({ data });
             
         } catch (error) {
-            return res.status(500).json({ message: "Error retrieving routines", error: error.message });
-        }
+          next(error)        
+}
     }
   
     // Get a single routine by its ID
-    static async getRoutineById(req, res) {
+    static async getRoutineById(req, res, next) {
         const { id } = req.params;
         try {
             const data = await Routines.getRoutineById(id);
@@ -43,8 +43,8 @@ class RoutineController {
                 return res.status(404).json({ message: "Routine not found" });
             }
         } catch (error) {
-            return res.status(500).json({ message: "Error retrieving routine", error: error.message });
-        }
+            next(error)        
+          }
     }
 }
 

@@ -30,6 +30,6 @@ router.post("/login", UserController.login)
 
 // middleware here
 router.use(authentication)
-// router.use(errorHandler)
+router.use(errorHandler)
 
 module.exports = router;
