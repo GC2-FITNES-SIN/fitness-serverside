@@ -1,25 +1,21 @@
+const { ObjectId } = require("mongodb");
 const db = require("../config/mongoConn");
-const bcrypt = require("bcryptjs");
-const { comparePass, signToken, hashPass } = require("../helpers/index");
-
+const { hashPass, comparePass, signToken } = require("../helpers");
 
 class UserController {
     static async register(req, res, next) {
+        const body = req.body;
+        console.log(body, ">>>");
         try {
-            const { name, username, email, password, phoneNumber, image, gender, weight, height } = req.body
             let userInput = {
-                name,
-                username,
-                email,
-                password : hashPass(password),
-                phoneNumber,
-                image,
-                gender,
-                weight,
-                height,
+                ...body,
                 createdAt: new Date(),
                 updatedAt: new Date()
             };
+
+            let findUser = await db.collection("users").findOne({email: userInput.email});
+
+            if (findUser) throw {name: "BadRequest", message: "Email already exist"}
 
             if (!userInput.username) throw {name: "BadRequest", message: "Username is required"};
             if (!userInput.email) throw {name: "BadRequest", message: "Email is required"};
@@ -29,38 +25,49 @@ class UserController {
 
             let newUser = await db.collection("users").insertOne(userInput);
 
-            return res.status(201).json({message: "Register success", data: newUser});
+            res.status(201).json({message: "Register success"});
         } catch (error) {
-            next(error);
+            // console.log("<<<<" ,error, ">>>>");
+            if (error.name === "BadRequest") {
+                res.status(400).json({message: error.message});
+            } else {
+                res.status(500).json({message: "Internal server error"})
+            }
         }
     };
 
     static async login(req, res, next) {
         try {
-            const { username, password } = req.body;
+            const body = req.body;
+            let userInput = {
+                ...body,
+            };
 
-            if (!username) throw {name: "BadRequest", message: "Username is required"};
-            if (!password) throw {name: "BadRequest", message: "Password is required"};
+            if (!userInput.username) throw {name: "BadRequest", message: "Username cannot be empty"};
+            if (!userInput.email) throw {name: "BadRequest", message: "Email cannot be empty"};
+            if (!userInput.password) throw {name: "BadRequest", message: "Password cannot be empty"}
 
-            const user = await db.collection("users").findOne({ username }); 
+            let findUser = await db.collection("users").findOne({email: userInput.email});
 
-            if (!user) throw {name: "NotFound", message: "Username not found"};
+            if (!findUser) throw {name: "Unauthorized" }
 
-            const match = comparePass(password, user.password);
+            let isValidPassword = comparePass(userInput.password, findUser.password);
 
-            if (!match) throw {name: "Unauthorized", message: "Wrong password"};
+            if (!isValidPassword) throw {name: "Unauthorized"}
 
-            const payload = signToken({
-                id: user._id,
-                username: user.username
-            });
+            if (email !== findUser.email) throw { name: "Unauthorized" };
 
-            const access_token = payload;
+            const accessToken = signToken({ id: findUser._id })
 
-            return res.status(200).json({message: "Login success", token: access_token});
-
+            res.status(200).json({username: findUser.username, access_Token: accessToken});
+            // req.status(200).json({message: "Login success"});
         } catch (error) {
-            next(error);
+            console.log(error);
+            if (error.name === "Unauthorized") {
+                res.status(401).json({ message: "Invalid email or password" })
+            } else {
+                res.status(500).json({ message: "Internal server error" })
+            }
         }
     }
 }
