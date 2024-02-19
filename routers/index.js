@@ -8,7 +8,7 @@ const router = express.Router();
 // Import controllers
 // const UserController = require('../controllers/UserController');
 const RoutineController = require('../controllers/RoutineController.js');
-// const RunningHistoryController = require('../controllers/RunningHistoryController');
+const RunningHistoryController = require('../controllers/RunningHistoryController');
 
 // Routines
 router.get("/routines", RoutineController.getAllRoutines);
@@ -22,8 +22,8 @@ router.put("/user-routines/:id", /* RoutineController.updateUserRoutine */); // 
 router.delete("/user-routines/:id", /* RoutineController.deleteUserRoutine */); // id is for userRoutines
 
 // Running History
-router.get("/running-history", /* RunningHistoryController.getRunningHistory */); // already filtered
-router.post("/running-history", /* RunningHistoryController.createRunningHistory */);
+router.get("/running-history", RunningHistoryController.getRunningHistories ); // already filtered
+router.post("/running-history", RunningHistoryController.addRunningHistory );
 // route here
 router.post("/register", UserController.register);
 router.post("/login", UserController.login)
