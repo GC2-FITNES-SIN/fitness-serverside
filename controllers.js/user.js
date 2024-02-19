@@ -5,6 +5,7 @@ const { hashPass, comparePass, signToken } = require("../helpers");
 class UserController {
     static async register(req, res, next) {
         const body = req.body;
+        console.log(body, ">>>");
         try {
             let userInput = {
                 ...body,
@@ -12,12 +13,7 @@ class UserController {
                 updatedAt: new Date()
             };
 
-            // console.log(userInput, "UUUU");
-            let newUser = await db.collection("users").insertOne(userInput);
-
-            const filter = { _id: newUser.insertedId }
-
-            let findUser = await db.collection("users").findOne(filter);
+            let findUser = await db.collection("users").findOne({email: userInput.email});
 
             if (findUser) throw {name: "BadRequest", message: "Email already exist"}
 
@@ -27,8 +23,7 @@ class UserController {
             if (!userInput.weight) throw {name: "BadRequest", message: "Weight is required"}
             if (!userInput.height) throw {name: "BadRequest", message: "Height is required"}
 
-
-            // console.log(newUser, ">>>>");
+            let newUser = await db.collection("users").insertOne(userInput);
 
             res.status(201).json({message: "Register success"});
         } catch (error) {
@@ -52,7 +47,7 @@ class UserController {
             if (!userInput.email) throw {name: "BadRequest", message: "Email cannot be empty"};
             if (!userInput.password) throw {name: "BadRequest", message: "Password cannot be empty"}
 
-            let findUser = await db.collection("users").findOne(userInput.email);
+            let findUser = await db.collection("users").findOne({email: userInput.email});
 
             if (!findUser) throw {name: "Unauthorized" }
 
