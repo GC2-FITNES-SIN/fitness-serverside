@@ -27,7 +27,7 @@ class UserController {
 
             res.status(201).json({message: "Register success"});
         } catch (error) {
-            console.log("<<<<" ,error, ">>>>");
+            // console.log("<<<<" ,error, ">>>>");
             if (error.name === "BadRequest") {
                 res.status(400).json({message: error.message});
             } else {
