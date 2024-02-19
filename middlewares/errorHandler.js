@@ -8,9 +8,9 @@ module.exports = (err, req, res, next) => {
             message = "Invalid token";
             break;
     
-        case "SequelizeValidationError":
+        case "BadRequest":
             status = 400;
-            message = err.errors[0].message;
+            message = err.message;
             break;
     };
 
