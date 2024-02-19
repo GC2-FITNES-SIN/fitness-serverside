@@ -10,7 +10,10 @@ const router = express.Router();
 const RoutineController = require('../controllers/RoutineController.js');
 const RunningHistoryController = require('../controllers/RunningHistoryController');
 
+router.post("/register", UserController.register);
+router.post("/login", UserController.login)
 // Routines
+router.use(authentication)
 router.get("/routines", RoutineController.getAllRoutines);
 router.get("/routines/:id", RoutineController.getRoutineById);
 router.get("/routines?category=", RoutineController.getAllRoutines); // This might conflict with the above get /routines endpoint
@@ -25,11 +28,8 @@ router.delete("/user-routines/:id", /* RoutineController.deleteUserRoutine */); 
 router.get("/running-history", RunningHistoryController.getRunningHistories ); // already filtered
 router.post("/running-history", RunningHistoryController.addRunningHistory );
 // route here
-router.post("/register", UserController.register);
-router.post("/login", UserController.login)
 
 // middleware here
-router.use(authentication)
 router.use(errorHandler)
 
 module.exports = router;
