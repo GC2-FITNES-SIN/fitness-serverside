@@ -1,12 +1,19 @@
 const db = require("../config/mongoConn");
 const bcrypt = require("bcryptjs");
 const { comparePass, signToken, hashPass } = require("../helpers/index");
+const { error } = require("console");
 
 
 class UserController {
     static async register(req, res, next) {
         try {
             const { name, username, email, password, phoneNumber, image, gender, weight, height } = req.body
+            if (!name) throw {name: "BadRequest", message: "Name is required"}
+            if (!username) throw {name: "BadRequest", message: "Username is required"};
+            if (!email) throw {name: "BadRequest", message: "Email is required"};
+            if (!password) throw {name: "BadRequest", message: "Password is required"}
+            if (!weight) throw {name: "BadRequest", message: "Weight is required"}
+            if (!height) throw {name: "BadRequest", message: "Height is required"}
             let userInput = {
                 name,
                 username,
@@ -21,11 +28,18 @@ class UserController {
                 updatedAt: new Date()
             };
 
-            if (!userInput.username) throw {name: "BadRequest", message: "Username is required"};
-            if (!userInput.email) throw {name: "BadRequest", message: "Email is required"};
-            if (!userInput.password) throw {name: "BadRequest", message: "Password is required"}
-            if (!userInput.weight) throw {name: "BadRequest", message: "Weight is required"}
-            if (!userInput.height) throw {name: "BadRequest", message: "Height is required"}
+            
+            function validateEmailFormat(email) {
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailPattern.test(email);
+            }
+
+            if (!validateEmailFormat(userInput.email)) throw {name: "BadRequest", message: "Invalid email format"};
+
+            const validateEmail = await db.collection('users').findOne({email});
+
+            if(validateEmail) throw {name: "BadRequest", message: "Email already exist"}  
+
 
             let newUser = await db.collection("users").insertOne(userInput);
 
