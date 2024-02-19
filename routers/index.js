@@ -19,10 +19,10 @@ router.get("/routines/:id", RoutineController.getRoutineById);
 router.get("/routines?category=", RoutineController.getAllRoutines); // This might conflict with the above get /routines endpoint
 
 // User Routines
-router.post("/user-routines", /* RoutineController.createUserRoutine */);
-router.get("/user-routines", /* RoutineController.getUserRoutines */); // already filtered
-router.put("/user-routines/:id", /* RoutineController.updateUserRoutine */); // id is for userRoutines
-router.delete("/user-routines/:id", /* RoutineController.deleteUserRoutine */); // id is for userRoutines
+router.post("/user-routines", RoutineController.createUserRoutine);
+router.get("/user-routines", RoutineController.getUserRoutines); // already filtered
+// router.put("/user-routines/:id", /* RoutineController.updateUserRoutine */); // id is for userRoutines
+// router.delete("/user-routines/:id", /* RoutineController.deleteUserRoutine */); // id is for userRoutines
 
 // Running History
 router.get("/running-history", RunningHistoryController.getRunningHistories ); // already filtered
