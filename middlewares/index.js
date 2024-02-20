@@ -1,25 +1,28 @@
+const { ObjectId } = require('mongodb');
 const db = require('../config/mongoConn');
 const { verifyToken } = require('../helpers');
 
 const authentication = async (req, res, next) => {
     try {
-        let token = req.headers.authroization;
-        if (!token) throw {name: "InvalidToken"};
+        let tokens = req.headers.authorization;
+        // console.log(tokens, "TOKENNNNNN");
+        if (!tokens) throw {name: "InvalidToken"};
+        const [bearer, token] = tokens.split(" "); 
 
-        if (token.slice(0, 7) !== "Bearer ") throw {name: "InvalidToken"};
-
-        token = token.slice(7);
+        if (bearer !== "Bearer" || !token) throw {name: "InvalidToken"};
 
         const payload = verifyToken(token);
 
-        const user = await db.collection("users").findOne({_id: payload.id});
+        // console.log(payload, "PAYLOADDDDDDD");
+
+        const user = await db.collection("users").findOne({email: payload.email})
         console.log(user, "UUUSEEERRR");
 
         req.user = {
-            id: user.id
+            id: user._id
         }
 
-        console.log("auth");
+        // console.log("auth");
         next();
     } catch (error) {
         next(error);
