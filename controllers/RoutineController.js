@@ -8,16 +8,16 @@ class RoutineController {
     static async getAllRoutines(req, res, next) {
         const { search } = req.query;
 
-        const redisPost = await redis.get("routines")
-        if(redisPost) {
-          return res.status(200).json({data: JSON.parse(redisPost)})
-        }
-
         if(search) {
           const data = await Routines.searchRoutine(search)
           console.log(data);
           return res.status(200).json({data})
         }
+        const redisPost = await redis.get("routines")
+        if(redisPost) {
+          return res.status(200).json({data: JSON.parse(redisPost)})
+        }
+
 
         try {
               // Call getAllRoutines from Routines class

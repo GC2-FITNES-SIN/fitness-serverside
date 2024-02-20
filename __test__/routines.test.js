@@ -28,12 +28,15 @@ beforeAll(async () => {
     },
   ];
 
+  await redis.del("routines");
+
   await db.collection("routines").insertMany(inputData);
   let findOneData = await db.collection("routines").find({}).toArray();
   id = findOneData[0]._id;
 });
 
 afterAll(async () => {
+  await redis.del("routines");
   await db.collection("routines").deleteMany({});
 })
 
