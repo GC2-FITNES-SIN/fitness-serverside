@@ -13,11 +13,13 @@ const authentication = async (req, res, next) => {
         const payload = verifyToken(token);
 
         const user = await db.collection("users").findOne({_id: payload.id});
+        console.log(user, "UUUSEEERRR");
 
         req.user = {
             id: user.id
         }
 
+        console.log("auth");
         next();
     } catch (error) {
         next(error);
