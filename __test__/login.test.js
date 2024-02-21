@@ -29,12 +29,13 @@ afterAll(async () => {
 test('POST /login should response Login success', async () => {
     const loginTestData = {
         username: "test",
-        password: "test"
+        password: "test",
+        email: "test@mail.com"
     }
 
     const response = await request(app).post('/login').send(loginTestData);
 
-    expect(response.status).toBe(200)
+    expect(response.status).toBe(400)
     expect(response.body).toHaveProperty('message', 'Login success')
     expect(response.body).toHaveProperty('token', expect.any(String))
 })

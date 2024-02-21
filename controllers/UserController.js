@@ -58,7 +58,6 @@ class UserController {
                 ...body,
             };
 
-            if (!userInput.username) throw {name: "BadRequest", message: "Username cannot be empty"};
             if (!userInput.email) throw {name: "BadRequest", message: "Email cannot be empty"};
             if (!userInput.password) throw {name: "BadRequest", message: "Password cannot be empty"}
 

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.33% </span>
+                <span class="strong">86.2% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/60</span>
+                <span class='fraction'>50/58</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.76% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>21/34</span>
+                <span class='fraction'>24/32</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.91% </span>
+                <span class="strong">91.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>34/46</span>
+                <span class='fraction'>41/45</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -156,8 +156,7 @@
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
@@ -218,30 +217,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -311,26 +309,25 @@ class UserController {
                 ...body,
             };
 &nbsp;
-            if (!userInput.username) throw {name: "BadRequest", message: "Username cannot be empty"};
-            <span class="missing-if-branch" title="else path not taken" >E</span>if (!userInput.email) throw {name: "BadRequest", message: "Email cannot be empty"};
-<span class="cstat-no" title="statement not covered" >            if (!userInput.password) <span class="cstat-no" title="statement not covered" >throw {name: "BadRequest", message: "Password cannot be empty"}</span></span>
+            if (!userInput.email) throw {name: "BadRequest", message: "Email cannot be empty"};
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!userInput.password) <span class="cstat-no" title="statement not covered" >throw {name: "BadRequest", message: "Password cannot be empty"}</span>
 &nbsp;
-            let findUser = <span class="cstat-no" title="statement not covered" >await db.collection("users").findOne({email: userInput.email});</span>
+            let findUser = await db.collection("users").findOne({email: userInput.email});
             // console.log(findUser, "????????1");
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (!findUser) <span class="cstat-no" title="statement not covered" >throw {name: "Unauthorized" }</span></span>
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!findUser) <span class="cstat-no" title="statement not covered" >throw {name: "Unauthorized" }</span>
 &nbsp;
-            let isValidPassword = <span class="cstat-no" title="statement not covered" >comparePass(userInput.password, findUser.password);</span>
+            let isValidPassword = comparePass(userInput.password, findUser.password);
             // console.log(isValidPassword, "222222");
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (!isValidPassword) <span class="cstat-no" title="statement not covered" >throw {name: "Unauthorized"}</span></span>
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!isValidPassword) <span class="cstat-no" title="statement not covered" >throw {name: "Unauthorized"}</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (userInput.email !== findUser.email) <span class="cstat-no" title="statement not covered" >throw { name: "Unauthorized" };</span></span>
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (userInput.email !== findUser.email) <span class="cstat-no" title="statement not covered" >throw { name: "Unauthorized" };</span>
             // console.log(userInput.email, findUser.email, "#3333");
 &nbsp;
-            const accessToken = <span class="cstat-no" title="statement not covered" >signToken({ id: findUser._id, name: findUser.name, username: findUser.username, email: findUser.email, phoneNumber: findUser.phoneNumber, gender: findUser.gender, weight: findUser.weight, height: findUser.height, image: findUser.image, age: findUser.age })</span>
+            const accessToken = signToken({ id: findUser._id, name: findUser.name, username: findUser.username, email: findUser.email, phoneNumber: findUser.phoneNumber, gender: findUser.gender, weight: findUser.weight, height: findUser.height, image: findUser.image, age: findUser.age })
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            res.status(200).json({username: findUser.username, access_Token: accessToken});</span>
+            res.status(200).json({username: findUser.username, access_Token: accessToken});
             // req.status(200).json({message: "Login success"});
         } catch (error) {
             console.log(error);
@@ -352,7 +349,7 @@ module.exports = UserController;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-21T04:35:41.004Z
+                at 2024-02-21T05:50:02.419Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
