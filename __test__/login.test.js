@@ -3,7 +3,7 @@ const request = require("supertest");
 const app = require("../app");
 const UserController = require("../controllers/UserController");
 const { signToken, hashPass } = require("../helpers/index");
-const db = require("../config/mongoConn");
+const db = require("../config/mongoConn.js");
 
 beforeAll(async () => {
     let userInput = {

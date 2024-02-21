@@ -16,7 +16,7 @@ router.post("/login", UserController.login)
 router.use(authentication)
 router.get("/routines", RoutineController.getAllRoutines);
 router.get("/routines/:id", RoutineController.getRoutineById);
-router.get("/routines?category=", RoutineController.getAllRoutines); // This might conflict with the above get /routines endpoint
+router.get("/routines?search=", RoutineController.getAllRoutines); // This might conflict with the above get /routines endpoint
 
 // User Routines
 router.post("/user-routines", RoutineController.createUserRoutine);
