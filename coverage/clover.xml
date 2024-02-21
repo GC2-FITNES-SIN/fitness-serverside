@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1708502580283" clover="3.2.0">
-  <project timestamp="1708502580283" name="All files">
-    <metrics statements="227" coveredstatements="118" conditionals="59" coveredconditionals="25" methods="23" coveredmethods="7" elements="309" coveredelements="150" complexity="0" loc="227" ncloc="227" packages="7" files="12" classes="12"/>
+<coverage generated="1708515425293" clover="3.2.0">
+  <project timestamp="1708515425294" name="All files">
+    <metrics statements="228" coveredstatements="119" conditionals="61" coveredconditionals="26" methods="23" coveredmethods="7" elements="312" coveredelements="152" complexity="0" loc="228" ncloc="228" packages="7" files="12" classes="12"/>
     <package name="fitness-serverside">
       <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="D:\1Haktiv8\Phase3\fitness-serverside\app.js">
@@ -20,14 +20,15 @@
       </file>
     </package>
     <package name="fitness-serverside.config">
-      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="mongoConn.js" path="D:\1Haktiv8\Phase3\fitness-serverside\config\mongoConn.js">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
         <line num="4" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="17" count="4" type="stmt"/>
       </file>
       <file name="redisConn.js" path="D:\1Haktiv8\Phase3\fitness-serverside\config\redisConn.js">
@@ -103,16 +104,16 @@
         <line num="4" count="4" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
-        <line num="10" count="9" type="stmt"/>
-        <line num="11" count="9" type="stmt"/>
-        <line num="12" count="9" type="stmt"/>
-        <line num="13" count="9" type="stmt"/>
-        <line num="14" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="17" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="18" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="10" count="10" type="stmt"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="14" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="20" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
@@ -121,8 +122,8 @@
         <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="38" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
-        <line num="42" count="9" type="cond" truecount="1" falsecount="1"/>
-        <line num="43" count="9" type="stmt"/>
+        <line num="42" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="10" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
         <line num="51" count="5" type="stmt"/>
         <line num="52" count="5" type="stmt"/>
