@@ -7,7 +7,7 @@ const { error } = require("console");
 
 class UserController {
     static async register(req, res, next) {
-        // const body = req.body;
+        const body = req.body;
         // console.log(body, ">>>");
         try {
 
@@ -41,12 +41,8 @@ class UserController {
 
             res.status(201).json({message: "Register success"});
         } catch (error) {
-            // console.log("<<<<" ,error, ">>>>");
-            if (error.name === "BadRequest") {
-                res.status(400).json({message: error.message});
-            } else {
-                res.status(500).json({message: "Internal server error"})
-            }
+            console.log(error);
+            next(error);
         }
     };
 
@@ -69,7 +65,7 @@ class UserController {
             let isValidPassword = comparePass(userInput.password, findUser.password);
             // console.log(isValidPassword, "222222");
 
-            if (!isValidPassword) throw {name: "Unauthorized"}
+            if (!isValidPassword) throw {name: "Unauthorized", message: "Invalid email or password"}
 
             if (userInput.email !== findUser.email) throw { name: "Unauthorized" };
             // console.log(userInput.email, findUser.email, "#3333");
@@ -87,13 +83,7 @@ class UserController {
             // req.status(200).json({message: "Login success"});
         } catch (error) {
             console.log(error);
-            if (error.name === "BadRequest") {
-                res.status(400).json({ message: error.message });
-            } else if (error.name === "Unauthorized") {
-                res.status(401).json({ message: "Invalid email or password" })
-            } else {
-                res.status(500).json({ message: "Internal server error" })
-            }
+            next(error);
         }
     };
 
@@ -117,7 +107,7 @@ class UserController {
 
             res.status(200).json({ message: "User updated successfully" });
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             next(error);
         }
 

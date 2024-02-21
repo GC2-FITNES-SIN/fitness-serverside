@@ -108,12 +108,7 @@ class RoutineController {
 
       res.status(200).json(data);
     } catch (error) {
-      // console.log(error);
-      if (error.name === "NotFound") {
-        res.status(404).json({ message: "Routine not found" });
-      } else {
         next(error);
-      }
     }
   }
 }
