@@ -9,12 +9,8 @@ const client = new MongoClient(uri, {
 	},
 });
 
-let db 
+let db;
 
-console.log(process.env.NODE_ENV, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
-if(process.env.NODE_ENV === 'test') {
-	db = client.db(process.env.DB_NAME_TESTING);
-} else db = client.db(process.env.DB_NAME_DEVELOPMENT);
-
+db = client.db("Project-1");
 
 module.exports = db;
