@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, {
@@ -10,7 +11,8 @@ const client = new MongoClient(uri, {
 
 let db 
 
-if(process.env.NODE_ENV === 'testing') {
+console.log(process.env.NODE_ENV, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+if(process.env.NODE_ENV === 'test') {
 	db = client.db(process.env.DB_NAME_TESTING);
 } else db = client.db(process.env.DB_NAME_DEVELOPMENT);
 

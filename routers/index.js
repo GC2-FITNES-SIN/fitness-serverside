@@ -1,4 +1,5 @@
 // /routers/index.js
+require("dotenv").config();
 const express = require("express");
 const authentication = require("../middlewares");
 const UserController = require("../controllers/UserController.js");

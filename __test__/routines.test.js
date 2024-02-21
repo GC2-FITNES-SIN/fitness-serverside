@@ -1,5 +1,3 @@
-// getAllRoutines.test.js
-
 const request = require("supertest");
 const app = require("../app.js");
 const Routines = require("../models/routines.js"); // Adjust the path as necessary to correctly import the Routines class

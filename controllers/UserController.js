@@ -41,7 +41,6 @@ class UserController {
 
             res.status(201).json({message: "Register success"});
         } catch (error) {
-            // console.log("<<<<" ,error, ">>>>");
             if (error.name === "BadRequest") {
                 res.status(400).json({message: error.message});
             } else {
@@ -53,7 +52,6 @@ class UserController {
     static async login(req, res, next) {
         try {
             const body = req.body;
-            // console.log(body, ">>>>>>>>");
             let userInput = {
                 ...body,
             };
@@ -62,17 +60,14 @@ class UserController {
             if (!userInput.password) throw {name: "BadRequest", message: "Password cannot be empty"}
 
             let findUser = await db.collection("users").findOne({email: userInput.email});
-            // console.log(findUser, "????????1");
 
             if (!findUser) throw {name: "Unauthorized" }
 
             let isValidPassword = comparePass(userInput.password, findUser.password);
-            // console.log(isValidPassword, "222222");
 
             if (!isValidPassword) throw {name: "Unauthorized"}
 
             if (userInput.email !== findUser.email) throw { name: "Unauthorized" };
-            // console.log(userInput.email, findUser.email, "#3333");
 
             const accessToken = signToken({ id: findUser._id, name: findUser.name, username: findUser.username, email: findUser.email, phoneNumber: findUser.phoneNumber, gender: findUser.gender, weight: findUser.weight, height: findUser.height, image: findUser.image, age: findUser.age })
 
@@ -84,7 +79,6 @@ class UserController {
                 weight: findUser.weight,
                 height: findUser.height,
                 access_Token: accessToken});
-            // req.status(200).json({message: "Login success"});
         } catch (error) {
             console.log(error);
             if (error.name === "BadRequest") {
@@ -98,7 +92,6 @@ class UserController {
     };
 
     static async updateUser(req, res, next) {
-        console.log(req.user, "REQQQQQQ");
         try {
             const body = req.body;
             console.log(body, "BODYY");
@@ -106,14 +99,12 @@ class UserController {
                 ...body,
                 updatedAt: new Date()
             };
-            console.log(bodyData, "BODYDATA");
 
             const data = await db.collection("users").updateOne(
                 { _id: new ObjectId(req.user.id) },
                 { $set: bodyData }
             );
 
-            console.log(data, "DATAAAA")
 
             res.status(200).json({ message: "User updated successfully" });
         } catch (error) {
