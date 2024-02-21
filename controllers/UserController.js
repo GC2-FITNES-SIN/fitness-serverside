@@ -10,12 +10,13 @@ class UserController {
 		// const body = req.body;
 		// console.log(body, ">>>");
 		try {
-			const { name, username, email, password, phoneNumber, image, gender, weight, height } = req.body;
+			const { name, username, email, password, phoneNumber, image, gender, weight, height, age } = req.body;
 			if (!username) throw { name: "BadRequest", message: "Username is required" };
 			if (!email) throw { name: "BadRequest", message: "Email is required" };
 			if (!password) throw { name: "BadRequest", message: "Password is required" };
 			if (!weight) throw { name: "BadRequest", message: "Weight is required" };
 			if (!height) throw { name: "BadRequest", message: "Height is required" };
+			if (!age) throw { name: "BadRequest", message: "Age is required" };
 			let userInput = {
 				...body,
 				password: hashPass(body.password),
@@ -79,18 +80,16 @@ class UserController {
 				age: findUser.age,
 			});
 
-			res
-				.status(200)
-				.json({
-					username: findUser.username,
-					email: findUser.email,
-					image: findUser.image,
-					age: findUser.age,
-					gender: findUser.gender,
-					weight: findUser.weight,
-					height: findUser.height,
-					access_Token: accessToken,
-				});
+			res.status(200).json({
+				username: findUser.username,
+				email: findUser.email,
+				image: findUser.image,
+				age: findUser.age,
+				gender: findUser.gender,
+				weight: findUser.weight,
+				height: findUser.height,
+				access_Token: accessToken,
+			});
 		} catch (error) {
 			console.log(error);
 			if (error.name === "BadRequest") {
