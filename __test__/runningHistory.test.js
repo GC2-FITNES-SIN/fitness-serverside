@@ -10,7 +10,7 @@ describe('Running History Testing', () => {
       duration: 120,
       createdAt: new Date(),
       updatedAt: new Date(),
-      UserId: ObjectId() //need from req.user
+      UserId: new ObjectId() //need from req.user
     }
     await db.collection("runningHistories").insertOne(data)
   });

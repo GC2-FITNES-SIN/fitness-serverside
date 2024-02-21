@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1708490029698" clover="3.2.0">
-  <project timestamp="1708490029698" name="All files">
-    <metrics statements="225" coveredstatements="110" conditionals="59" coveredconditionals="27" methods="24" coveredmethods="6" elements="308" coveredelements="143" complexity="0" loc="225" ncloc="225" packages="7" files="12" classes="12"/>
+<coverage generated="1708490141062" clover="3.2.0">
+  <project timestamp="1708490141062" name="All files">
+    <metrics statements="225" coveredstatements="112" conditionals="59" coveredconditionals="28" methods="24" coveredmethods="6" elements="308" coveredelements="146" complexity="0" loc="225" ncloc="225" packages="7" files="12" classes="12"/>
     <package name="fitness-serverside">
       <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="D:\1Haktiv8\Phase3\fitness-serverside\app.js">
@@ -39,7 +39,7 @@
       </file>
     </package>
     <package name="fitness-serverside.controllers">
-      <metrics statements="95" coveredstatements="37" conditionals="42" coveredconditionals="20" methods="9" coveredmethods="3"/>
+      <metrics statements="95" coveredstatements="39" conditionals="42" coveredconditionals="21" methods="9" coveredmethods="3"/>
       <file name="RoutineController.js" path="D:\1Haktiv8\Phase3\fitness-serverside\controllers\RoutineController.js">
         <metrics statements="37" coveredstatements="3" conditionals="8" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="2" count="4" type="stmt"/>
@@ -96,7 +96,7 @@
         <line num="25" count="4" type="stmt"/>
       </file>
       <file name="UserController.js" path="D:\1Haktiv8\Phase3\fitness-serverside\controllers\UserController.js">
-        <metrics statements="46" coveredstatements="32" conditionals="34" coveredconditionals="20" methods="3" coveredmethods="3"/>
+        <metrics statements="46" coveredstatements="34" conditionals="34" coveredconditionals="21" methods="3" coveredmethods="3"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="4" count="4" type="stmt"/>
@@ -116,11 +116,11 @@
         <line num="30" count="3" type="stmt"/>
         <line num="33" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="35" count="2" type="stmt"/>
-        <line num="37" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="45" count="9" type="cond" truecount="1" falsecount="1"/>
-        <line num="46" count="9" type="stmt"/>
+        <line num="37" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="45" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="46" count="8" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="54" count="5" type="stmt"/>
         <line num="55" count="5" type="stmt"/>
@@ -169,13 +169,13 @@
       <file name="errorHandler.js" path="D:\1Haktiv8\Phase3\fitness-serverside\middlewares\errorHandler.js">
         <metrics statements="16" coveredstatements="9" conditionals="9" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="1" count="4" type="stmt"/>
-        <line num="2" count="4" type="stmt"/>
-        <line num="3" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="4" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="6" count="4" type="cond" truecount="1" falsecount="4"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="6" type="cond" truecount="1" falsecount="4"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
@@ -190,9 +190,9 @@
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="4" count="4" type="stmt"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="7" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="cond" truecount="1" falsecount="1"/>
         <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="11" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -201,7 +201,7 @@
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="25" count="4" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
         <line num="29" count="4" type="stmt"/>
       </file>
     </package>
