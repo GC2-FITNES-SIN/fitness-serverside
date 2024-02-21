@@ -3,7 +3,7 @@ const Model = require("../models/runningHistory");
 class RunningHistoryController {
 	static async addRunningHistory(req, res, next) {
 		try {
-			const data = await Model.addRunningHistory({ ...req.body, UserId: req.user.id });
+			const data = await Model.addRunningHistory({ ...req.body, UserId: req.user.id, createdAt: new Date(), updatedAt: new Date() });
 			return res.status(201).json({ data });
 		} catch (error) {
 			console.log(error);
