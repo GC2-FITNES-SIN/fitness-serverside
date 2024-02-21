@@ -1,6 +1,8 @@
 // Import the Routines class
 const Routines = require("../models/routines"); // Adjust the path as necessary to correctly import the Routines class
 const { redis } = require("../config/redisConn.js");
+const db = require("../config/mongoConn.js");
+const { ObjectId } = require("mongodb");
 
 class RoutineController {
   // Get all routines or filter by category if a category query parameter is provided
@@ -47,30 +49,71 @@ class RoutineController {
   }
 
   static async createUserRoutine(req, res, next) {
+    // console.log("MASOKKKK");
+    const body = req.body;
+    // console.log(req.user.id, "<<< user id")
+    // console.log(body, "<< body");
+    const bodyData = {
+      scheduleDate: new Date(body.scheduleDate),
+      RoutineId: new ObjectId(String(body.RoutineId)),
+    };
     try {
-      const body = req.body;
       let routineInput = {
-        ...body,
-        userId: req.user._id,
+        ...bodyData,
+        UserId: req.user.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       };
-      const data = await Routines.createUserRoutine(routineInput);
+      const data = await db.collection("UserRoutines").insertOne(routineInput);
+      // console.log(data);
       res.status(201).json({ data });
     } catch (error) {
+      // console.log(error);
       next(error);
     }
   }
 
   static async getUserRoutines(req, res, next) {
-    console.log("masuk");
+    // console.log("masuk");
     try {
-      console.log(req.user, ">>>>>");
-      const data = await Routines.getUserRoutines(req.user._id);
+      // console.log(req.user, ">>>>>");
+      // const data = await db.collection('UserRoutines').findOne({UserId: req.user._id});
+      const data = await db
+        .collection("users")
+        .aggregate([
+          {
+            $match: {
+              _id: new ObjectId("65d42418fef264df0075bf42"),
+            },
+          },
+          {
+            $lookup: {
+              from: "UserRoutines",
+              localField: "_id",
+              foreignField: "UserId",
+              as: "userRoutinesById",
+            },
+          },
+          {
+            $lookup: {
+              from: "routines",
+              localField: "userRoutinesById.RoutineId",
+              foreignField: "_id",
+              as: "routineData",
+            },
+          },
+        ])
+        .toArray();
       if (!data) throw { name: "NotFound" };
 
       res.status(200).json(data);
     } catch (error) {
-      console.log(error);
-      next(error);
+      // console.log(error);
+      if (error.name === "NotFound") {
+        res.status(404).json({ message: "Routine not found" });
+      } else {
+        next(error);
+      }
     }
   }
 }
