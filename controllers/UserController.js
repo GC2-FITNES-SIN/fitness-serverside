@@ -60,6 +60,7 @@ class UserController {
 			let findUser = await db.collection("users").findOne({ email: userInput.email });
 
 			if (!findUser) throw { name: "Unauthorized" };
+			if (!findUser) throw { name: "Unauthorized" };
 
 			let isValidPassword = comparePass(userInput.password, findUser.password);
 

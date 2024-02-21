@@ -151,10 +151,11 @@
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="4" count="4" type="stmt"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
         <line num="10" count="4" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="14" count="4" type="stmt"/>
         <line num="15" count="3" type="stmt"/>
@@ -223,6 +224,7 @@
         <line num="39" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
         <line num="48" count="4" type="stmt"/>
+        <line num="48" count="4" type="stmt"/>
       </file>
       <file name="runningHistory.js" path="D:\BATCH-65\fase3\FProject\fitness-serverside\models\runningHistory.js">
         <metrics statements="18" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
@@ -256,9 +258,12 @@
         <line num="5" count="4" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
         <line num="11" count="4" type="stmt"/>
         <line num="12" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
         <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
         <line num="15" count="4" type="stmt"/>
         <line num="17" count="4" type="stmt"/>
         <line num="18" count="4" type="stmt"/>
@@ -269,7 +274,14 @@
         <line num="25" count="4" type="stmt"/>
         <line num="30" count="4" type="stmt"/>
         <line num="31" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
         <line num="35" count="4" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
         <line num="37" count="4" type="stmt"/>
       </file>
     </package>
