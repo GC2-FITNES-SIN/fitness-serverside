@@ -55,15 +55,16 @@ class UserController {
 			};
 
 			if (!userInput.email) throw { name: "BadRequest", message: "Email cannot be empty" };
-			if (!userInput.password) throw { name: "BadRequest", message: "Password cannot be empty" };
+			if (!userInput.password) throw { name: "BadRequest", message: "Password is required" };
 
 			let findUser = await db.collection("users").findOne({ email: userInput.email });
 
 			if (!findUser) throw { name: "Unauthorized" };
+			if (!findUser) throw { name: "Unauthorized" };
 
 			let isValidPassword = comparePass(userInput.password, findUser.password);
 
-			if (!isValidPassword) throw { name: "Unauthorized" };
+			if (!isValidPassword) throw { name: "Unauthorized", message: "Invalid email or password" };
 
 			if (userInput.email !== findUser.email) throw { name: "Unauthorized" };
 

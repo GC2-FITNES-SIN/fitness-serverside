@@ -14,16 +14,12 @@ class RoutineController {
       console.log(data);
       return res.status(200).json({ data });
     }
-    const redisPost = await redis.get("routines");
-    if (redisPost) {
-      return res.status(200).json({ data: JSON.parse(redisPost) });
-    }
+
 
     try {
       // Call getAllRoutines from Routines class
       const data = await Routines.getAllRoutines();
 
-      await redis.set("routines", JSON.stringify(data));
 
       return res.status(200).json({ data });
     } catch (error) {
@@ -108,12 +104,8 @@ class RoutineController {
 
       res.status(200).json(data);
     } catch (error) {
-      // console.log(error);
-      if (error.name === "NotFound") {
-        res.status(404).json({ message: "Routine not found" });
-      } else {
+
         next(error);
-      }
     }
   }
 }

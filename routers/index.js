@@ -14,11 +14,11 @@ const RunningHistoryController = require('../controllers/RunningHistoryControlle
 router.post("/register", UserController.register);
 router.post("/login", UserController.login)
 // Routines
-router.use(authentication)
-router.put("/userUpdate", UserController.updateUser);
 router.get("/routines", RoutineController.getAllRoutines);
 router.get("/routines/:id", RoutineController.getRoutineById);
 router.get("/routines?search=", RoutineController.getAllRoutines); // This might conflict with the above get /routines endpoint
+router.use(authentication)
+router.put("/userUpdate", UserController.updateUser);
 
 // User Routines
 router.post("/user-routines", RoutineController.createUserRoutine);
