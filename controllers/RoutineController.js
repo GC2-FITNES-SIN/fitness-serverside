@@ -1,6 +1,5 @@
 // Import the Routines class
 const Routines = require("../models/routines"); // Adjust the path as necessary to correctly import the Routines class
-const { redis } = require("../config/redisConn.js");
 const db = require("../config/mongoConn.js");
 const { ObjectId } = require("mongodb");
 
@@ -45,10 +44,9 @@ class RoutineController {
   }
 
   static async createUserRoutine(req, res, next) {
-    // console.log("MASOKKKK");
+
     const body = req.body;
-    // console.log(req.user.id, "<<< user id")
-    // console.log(body, "<< body");
+
     const bodyData = {
       scheduleDate: new Date(body.scheduleDate),
       RoutineId: new ObjectId(String(body.RoutineId)),
@@ -61,10 +59,11 @@ class RoutineController {
         updatedAt: new Date(),
       };
       const data = await db.collection("UserRoutines").insertOne(routineInput);
-      // console.log(data);
+
       res.status(201).json({ data });
+
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       next(error);
     }
   }
@@ -79,7 +78,7 @@ class RoutineController {
         .aggregate([
           {
             $match: {
-              _id: new ObjectId("65d42418fef264df0075bf42"),
+              _id: req.user.id
             },
           },
           {
@@ -100,11 +99,12 @@ class RoutineController {
           },
         ])
         .toArray();
-      if (!data) throw { name: "NotFound" };
+        if (data.length === 0 || (data.length > 0 && data[0].userRoutinesById.length === 0)) {
+          return res.status(404).json({ message: "User's routine not found" });
+        }
 
       res.status(200).json(data);
     } catch (error) {
-
         next(error);
     }
   }

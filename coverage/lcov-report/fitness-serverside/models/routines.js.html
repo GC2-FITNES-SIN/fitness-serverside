@@ -23,15 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-<<<<<<< HEAD
-                <span class="strong">63.15% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/19</span>
-=======
-                <span class="strong">15.78% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>3/19</span>
->>>>>>> development
+                <span class='fraction'>12/15</span>
             </div>
         
             
@@ -43,26 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-<<<<<<< HEAD
-                <span class='fraction'>3/4</span>
-=======
-                <span class='fraction'>0/4</span>
->>>>>>> development
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-<<<<<<< HEAD
-                <span class="strong">63.15% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/19</span>
-=======
-                <span class="strong">15.78% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>3/19</span>
->>>>>>> development
+                <span class='fraction'>12/15</span>
             </div>
         
             
@@ -77,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -118,18 +102,9 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,30 +138,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<<<<<<< HEAD
-=======
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
->>>>>>> development
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// create a code to call collection from mongodb
 const db = require('../config/mongoConn.js');
 const { ObjectId } = require('mongodb')
@@ -222,15 +176,6 @@ class Routines {
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  st</span>atic async getRoutinesByCategory(category) {
-<span class="cstat-no" title="statement not covered" >    try {</span>
-      const routines = <span class="cstat-no" title="statement not covered" >await db.collection('routines').find({ category: category }).toArray();</span>
-<span class="cstat-no" title="statement not covered" >      return routines;</span>
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      throw error;</span>
-    }
-  };
-&nbsp;
 &nbsp;
 }
 &nbsp;
@@ -242,11 +187,7 @@ module.exports = Routines;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2024-02-21T11:05:11.874Z
-=======
-                at 2024-02-21T06:41:18.439Z
->>>>>>> development
+                at 2024-02-21T17:54:45.154Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

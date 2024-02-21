@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/18</span>
+                <span class='fraction'>12/18</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/18</span>
+                <span class='fraction'>12/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -102,20 +102,16 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,33 +119,37 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const runningHistories = require("../config/mongoConn").collection("runningHistories");
 const { ObjectId } = require("mongodb");
 const haversine = require("haversine");
 &nbsp;
 class RunningHistory {
-<span class="fstat-no" title="function not covered" >	st</span>atic async addRunningHistory(data) {
-<span class="cstat-no" title="statement not covered" >		try {</span>
-			let distance = <span class="cstat-no" title="statement not covered" >0;</span>
-<span class="cstat-no" title="statement not covered" >			data?.cordinates?.forEach(<span class="fstat-no" title="function not covered" >(e</span>l, i, arr) =&gt; {</span>
+	static async addRunningHistory(data) {
+		try {
+			let distance = 0;
+			data?.cordinates?.forEach(<span class="fstat-no" title="function not covered" >(e</span>l, i, arr) =&gt; {
 <span class="cstat-no" title="statement not covered" >				if (i + 1 !== arr.length) {</span>
 					let start = <span class="cstat-no" title="statement not covered" >{</span>
 						latitude: Number(el.latitude),
@@ -162,17 +162,17 @@ class RunningHistory {
 <span class="cstat-no" title="statement not covered" >					distance += haversine(start, end, { unit: "km" });</span>
 				}
 			});
-			const result = <span class="cstat-no" title="statement not covered" >await runningHistories.insertOne({ ...data, distance });</span>
-<span class="cstat-no" title="statement not covered" >			return result;</span>
+			const result = await runningHistories.insertOne({ ...data, distance });
+			return result;
 		} catch (error) {
 <span class="cstat-no" title="statement not covered" >			throw error;</span>
 		}
 	}
 &nbsp;
-<span class="fstat-no" title="function not covered" >	st</span>atic async getRunningHistories(_id) {
-<span class="cstat-no" title="statement not covered" >		try {</span>
-			const result = <span class="cstat-no" title="statement not covered" >await runningHistories.find({ UserId: ObjectId(_id) }).toArray();</span>
-<span class="cstat-no" title="statement not covered" >			return result;</span>
+	static async getRunningHistories(_id) {
+		try {
+			const result = await runningHistories.find({ UserId: new ObjectId(_id) }).toArray();
+			return result;
 		} catch (error) {
 <span class="cstat-no" title="statement not covered" >			throw error;</span>
 		}
@@ -187,11 +187,7 @@ module.exports = RunningHistory;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2024-02-21T11:05:11.874Z
-=======
-                at 2024-02-21T06:41:18.439Z
->>>>>>> development
+                at 2024-02-21T17:54:45.154Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

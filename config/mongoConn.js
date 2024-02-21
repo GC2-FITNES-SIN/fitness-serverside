@@ -11,6 +11,6 @@ const client = new MongoClient(uri, {
 
 let db;
 
-db = client.db("Project-1");
+db = client.db("test");
 
 module.exports = db;

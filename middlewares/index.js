@@ -5,7 +5,6 @@ const { verifyToken } = require("../helpers");
 const authentication = async (req, res, next) => {
 	try {
 		let tokens = req.headers.authorization;
-		// console.log(tokens, "TOKENNNNNN");
 		if (!tokens) throw { name: "InvalidToken" };
 		const [bearer, token] = tokens.split(" ");
 
@@ -13,17 +12,12 @@ const authentication = async (req, res, next) => {
 
 		const payload = verifyToken(token);
 
-		// console.log(payload, "PAYLOADDDDDDD");
-
 		const user = await db.collection("users").findOne({ email: payload.email });
-		console.log(user, "UUUSEEERRR");
-		// console.log()
-
+		
 		req.user = {
 			id: user._id,
 		};
 
-		// console.log("auth");
 		next();
 	} catch (error) {
 		next(error);

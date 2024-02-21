@@ -8,19 +8,33 @@ let tokenAdm
 
 describe('Running History Testing', () => {
   beforeAll(async () => {
-    let data = {
-      coordinates: [],
-      duration: 120,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      UserId: new ObjectId() //need from req.user
+    await db.collection("runningHistories").deleteMany()
+    await db.collection("users").deleteMany()
+
+    let dataUser = {
+      name: "test",
+      username: "test",
+      email: "test@mail.com",
+      password: "test",
+      phoneNumber: "08123123123",
+      image: "test",
+      gender: "test",
+      weight: 100,
+      height: 100,
+      age: 25
     }
-    tokenAdm = signToken({ id: "65d42418fef264df0075bf42" });
-    await db.collection("runningHistories").insertOne(data)
+
+    await db.collection("users").insertOne(dataUser)
+
+    const findInsertedUser = await db.collection("users").findOne({ email: "test@mail.com" })
+
+    tokenAdm = signToken(findInsertedUser)
+
   });
 
   afterAll(async () => {
     await db.collection("runningHistories").deleteMany()
+    await db.collection("users").deleteMany()
   });
 
   test('POST /running-history should create new Running History', async () => {
@@ -72,7 +86,7 @@ describe('Running History Testing', () => {
   });
 
   test('GET /running-history should get data from seed', async () => {
-    const response = await request(app).get('/running-history')
+    const response = await request(app).get('/running-history').set('Authorization', `Bearer ${tokenAdm}`)
 
     expect(response.status).toBe(200)
     expect(response.body).toHaveProperty('data')

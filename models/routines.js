@@ -33,15 +33,6 @@ class Routines {
     }
   }
 
-  static async getRoutinesByCategory(category) {
-    try {
-      const routines = await db.collection('routines').find({ category: category }).toArray();
-      return routines;
-    } catch (error) {
-      throw error;
-    }
-  };
-
 
 }
 

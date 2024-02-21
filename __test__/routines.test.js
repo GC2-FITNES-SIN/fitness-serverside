@@ -1,7 +1,6 @@
 const request = require("supertest");
 const app = require("../app.js");
 const Routines = require("../models/routines.js"); // Adjust the path as necessary to correctly import the Routines class
-const { redis } = require("../config/redisConn.js");
 const db = require("../config/mongoConn.js");
 const { ObjectId } = require("mongodb");
 const { signToken } = require("../helpers/index.js");

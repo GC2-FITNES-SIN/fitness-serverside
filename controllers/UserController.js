@@ -106,9 +106,10 @@ class UserController {
 	static async updateUser(req, res, next) {
 		try {
 			const body = req.body;
-			console.log(body, "BODYY");
+
 			const bodyData = {
 				...body,
+				password: hashPass(body.password),
 				updatedAt: new Date(),
 			};
 
@@ -116,7 +117,6 @@ class UserController {
 
 			res.status(200).json({ message: "User updated successfully" });
 		} catch (error) {
-			console.log(error);
 			next(error);
 		}
 	}
