@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/21</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/21</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -99,40 +99,40 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// /routers/index.js
 const express = require("express");
 const authentication = require("../middlewares");
@@ -145,26 +145,26 @@ const router = express.Router();
 const RoutineController = require('../controllers/RoutineController.js');
 const RunningHistoryController = require('../controllers/RunningHistoryController');
 &nbsp;
+router.post("/register", UserController.register);
+router.post("/login", UserController.login)
 // Routines
+router.use(authentication)
 router.get("/routines", RoutineController.getAllRoutines);
 router.get("/routines/:id", RoutineController.getRoutineById);
 router.get("/routines?search=", RoutineController.getAllRoutines); // This might conflict with the above get /routines endpoint
 &nbsp;
 // User Routines
-router.post("/user-routines", /* RoutineController.createUserRoutine */);
-router.get("/user-routines", /* RoutineController.getUserRoutines */); // already filtered
-router.put("/user-routines/:id", /* RoutineController.updateUserRoutine */); // id is for userRoutines
-router.delete("/user-routines/:id", /* RoutineController.deleteUserRoutine */); // id is for userRoutines
+router.post("/user-routines", RoutineController.createUserRoutine);
+router.get("/user-routines", RoutineController.getUserRoutines); // already filtered
+// router.put("/user-routines/:id", /* RoutineController.updateUserRoutine */); // id is for userRoutines
+// router.delete("/user-routines/:id", /* RoutineController.deleteUserRoutine */); // id is for userRoutines
 &nbsp;
 // Running History
 router.get("/running-history", RunningHistoryController.getRunningHistories ); // already filtered
 router.post("/running-history", RunningHistoryController.addRunningHistory );
 // route here
-router.post("/register", UserController.register);
-router.post("/login", UserController.login)
 &nbsp;
 // middleware here
-router.use(authentication)
 router.use(errorHandler)
 &nbsp;
 module.exports = router;
@@ -175,7 +175,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-20T09:22:47.860Z
+                at 2024-02-21T04:33:49.630Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -28,6 +28,24 @@ class RoutineController {
       next(error);
     }
   }
+
+  // Get a single routine by its ID
+  static async getRoutineById(req, res, next) {
+    const { id } = req.params;
+    try {
+      const data = await Routines.getRoutineById(id);
+      if (data) {
+        return res
+          .status(200)
+          .json({ message: "Routine retrieved successfully", data: data });
+      } else {
+        return res.status(404).json({ message: "Routine not found" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async createUserRoutine(req, res, next) {
     try {
       const body = req.body;
