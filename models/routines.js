@@ -40,6 +40,26 @@ class Routines {
     } catch (error) {
       throw error;
     }
+  };
+
+  static async getUserRoutines(id) {
+    try {
+      const routines = await db.collection('userRoutines').find({ userId: id }).toArray();
+      console.log(routines, "MODEL ROUTINES");
+      return routines;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  static async createUserRoutine() {
+    try {
+      const data = await db.collection('userRoutines').insertOne({}); 
+      return data;
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
