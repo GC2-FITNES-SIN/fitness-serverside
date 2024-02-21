@@ -1,28 +1,41 @@
 const { ObjectId } = require("mongodb");
 const db = require("../config/mongoConn");
-const { hashPass, comparePass, signToken } = require("../helpers");
+
+const bcrypt = require("bcryptjs");
+const { comparePass, signToken, hashPass } = require("../helpers/index");
+const { error } = require("console");
 
 class UserController {
     static async register(req, res, next) {
         // const body = req.body;
         // console.log(body, ">>>");
         try {
+
+            const { name, username, email, password, phoneNumber, image, gender, weight, height } = req.body
+            if (!name) throw {name: "BadRequest", message: "Name is required"}
+            if (!username) throw {name: "BadRequest", message: "Username is required"};
+            if (!email) throw {name: "BadRequest", message: "Email is required"};
+            if (!password) throw {name: "BadRequest", message: "Password is required"}
+            if (!weight) throw {name: "BadRequest", message: "Weight is required"}
+            if (!height) throw {name: "BadRequest", message: "Height is required"}
             let userInput = {
                 ...body,
                 password: hashPass(body.password),
                 createdAt: new Date(),
                 updatedAt: new Date()
             };
+            
+            function validateEmailFormat(email) {
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailPattern.test(email);
+            }
 
-            let findUser = await db.collection("users").findOne({email: userInput.email});
+            if (!validateEmailFormat(userInput.email)) throw {name: "BadRequest", message: "Invalid email format"};
 
-            if (findUser) throw {name: "BadRequest", message: "Email already exist"}
+            const validateEmail = await db.collection('users').findOne({email});
 
-            if (!userInput.username) throw {name: "BadRequest", message: "Username is required"};
-            if (!userInput.email) throw {name: "BadRequest", message: "Email is required"};
-            if (!userInput.password) throw {name: "BadRequest", message: "Password is required"}
-            if (!userInput.weight) throw {name: "BadRequest", message: "Weight is required"}
-            if (!userInput.height) throw {name: "BadRequest", message: "Height is required"}
+            if(validateEmail) throw {name: "BadRequest", message: "Email already exist"}  
+
 
             let newUser = await db.collection("users").insertOne(userInput);
 

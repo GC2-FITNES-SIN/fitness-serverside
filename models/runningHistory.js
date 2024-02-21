@@ -6,7 +6,7 @@ class RunningHistory {
   static async addRunningHistory(data) {
     try {
       let distance = 0
-      data.forEach((el, i, arr) => {
+      data.coordinates.forEach((el, i, arr) => {
         if (i + 1 !== data.length) {
           distance += haversine(el, arr[i+1], {unit: 'km'})
         }

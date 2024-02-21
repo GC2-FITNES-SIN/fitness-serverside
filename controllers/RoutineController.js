@@ -7,18 +7,16 @@ const { ObjectId } = require("mongodb");
 class RoutineController {
   // Get all routines or filter by category if a category query parameter is provided
   static async getAllRoutines(req, res, next) {
-    console.log("1");
     const { search } = req.query;
-
-    const redisPost = await redis.get("routines");
-    if (redisPost) {
-      return res.status(200).json({ data: JSON.parse(redisPost) });
-    }
 
     if (search) {
       const data = await Routines.searchRoutine(search);
       console.log(data);
       return res.status(200).json({ data });
+    }
+    const redisPost = await redis.get("routines");
+    if (redisPost) {
+      return res.status(200).json({ data: JSON.parse(redisPost) });
     }
 
     try {
