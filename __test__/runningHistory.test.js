@@ -1,13 +1,28 @@
-const request = require("supertest")
-const app = require("../app")
+const request = require("supertest");
+const app = require("../app");
 const db = require("../config/mongoConn");
 const { ObjectId } = require("mongodb");
 const { signToken } = require("../helpers");
 
 let tokenAdm
 
-describe('Running History Testing', () => {
+describe("Running History Testing", () => {
   beforeAll(async () => {
+    const registerTestData = {
+      name: "test",
+      username: "test",
+      email: "test@mail.com",
+      password: "test",
+      phoneNumber: "08123123123",
+      image: "test",
+      gender: "test",
+      weight: 100,
+      height: 100,
+    };
+
+    const response = await request(app)
+      .post("/register")
+      .send(registerTestData);
     let data = {
       coordinates: [],
       duration: 120,
@@ -20,43 +35,44 @@ describe('Running History Testing', () => {
   });
 
   afterAll(async () => {
-    await db.collection("runningHistories").deleteMany()
+    await db.collection("runningHistories").deleteMany();
+    await db.collection("users").deleteMany();
   });
 
-  test('POST /running-history should create new Running History', async () => {
+  test("POST /running-history should create new Running History", async () => {
     const data = {
-      coordinates : [
+      coordinates: [
         {
           latitude: -6.175392,
-          longitude: 106.827153
+          longitude: 106.827153,
         },
         {
           latitude: -6.175033,
-          longitude: 106.827444
+          longitude: 106.827444,
         },
         {
           latitude: -6.174684,
-          longitude: 106.827735
+          longitude: 106.827735,
         },
         {
           latitude: -6.174335,
-          longitude: 106.828026
+          longitude: 106.828026,
         },
         {
           latitude: -6.173986,
-          longitude: 106.828317
+          longitude: 106.828317,
         },
         {
           latitude: -6.173637,
-          longitude: 106.828608
+          longitude: 106.828608,
         },
         {
           latitude: -6.173288,
-          longitude: 106.8289
+          longitude: 106.8289,
         },
         {
           latitude: -6.172939,
-          longitude: 106.829191
+          longitude: 106.829191,
         },
       ],
       duration: 300,
@@ -67,14 +83,14 @@ describe('Running History Testing', () => {
     .set('Authorization', `Bearer ${tokenAdm}`)
     .send(data)
 
-    expect(response.status).toBe(201)
-    expect(response.body).toHaveProperty('data')
+    expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty("data");
   });
 
-  test('GET /running-history should get data from seed', async () => {
-    const response = await request(app).get('/running-history')
+  test("GET /running-history should get data from seed", async () => {
+    const response = await request(app).get("/running-history");
 
-    expect(response.status).toBe(200)
-    expect(response.body).toHaveProperty('data')
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("data");
   });
 });
