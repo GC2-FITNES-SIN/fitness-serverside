@@ -7,7 +7,7 @@ const { error } = require("console");
 
 class UserController {
     static async register(req, res, next) {
-        const body = req.body;
+        // const body = req.body;
         // console.log(body, ">>>");
         try {
 
@@ -53,12 +53,11 @@ class UserController {
     static async login(req, res, next) {
         try {
             const body = req.body;
-            console.log(body, ">>>>>>>>");
+            // console.log(body, ">>>>>>>>");
             let userInput = {
                 ...body,
             };
 
-            if (!userInput.username) throw {name: "BadRequest", message: "Username cannot be empty"};
             if (!userInput.email) throw {name: "BadRequest", message: "Email cannot be empty"};
             if (!userInput.password) throw {name: "BadRequest", message: "Password cannot be empty"}
 
@@ -77,7 +76,14 @@ class UserController {
 
             const accessToken = signToken({ id: findUser._id, name: findUser.name, username: findUser.username, email: findUser.email, phoneNumber: findUser.phoneNumber, gender: findUser.gender, weight: findUser.weight, height: findUser.height, image: findUser.image, age: findUser.age })
 
-            res.status(200).json({username: findUser.username, access_Token: accessToken});
+            res.status(200).json({username: findUser.username,
+                email: findUser.email,
+                image: findUser.image,
+                age: findUser.age,
+                gender: findUser.gender,
+                weight: findUser.weight,
+                height: findUser.height,
+                access_Token: accessToken});
             // req.status(200).json({message: "Login success"});
         } catch (error) {
             console.log(error);
@@ -89,6 +95,32 @@ class UserController {
                 res.status(500).json({ message: "Internal server error" })
             }
         }
+    };
+
+    static async updateUser(req, res, next) {
+        console.log(req.user, "REQQQQQQ");
+        try {
+            const body = req.body;
+            console.log(body, "BODYY");
+            const bodyData = {
+                ...body,
+                updatedAt: new Date()
+            };
+            console.log(bodyData, "BODYDATA");
+
+            const data = await db.collection("users").updateOne(
+                { _id: new ObjectId(req.user.id) },
+                { $set: bodyData }
+            );
+
+            console.log(data, "DATAAAA")
+
+            res.status(200).json({ message: "User updated successfully" });
+        } catch (error) {
+            console.log(error);
+            next(error);
+        }
+
     }
 }
 
