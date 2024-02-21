@@ -7,8 +7,8 @@ const { error } = require("console");
 
 class UserController {
 	static async register(req, res, next) {
-		// const body = req.body;
-		// console.log(body, ">>>");
+		const body = req.body;
+		console.log(body, ">>>");
 		try {
 			const { name, username, email, password, phoneNumber, image, gender, weight, height, age } = req.body;
 			if (!username) throw { name: "BadRequest", message: "Username is required" };
