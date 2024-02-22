@@ -28,7 +28,7 @@ class RunningHistory {
 
 	static async getRunningHistories(_id) {
 		try {
-			const result = await runningHistories.find({ UserId: ObjectId(_id) }).toArray();
+			const result = await runningHistories.find({ UserId: new ObjectId(_id) }).toArray();
 			return result;
 		} catch (error) {
 			throw error;

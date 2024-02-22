@@ -1,4 +1,5 @@
 const Model = require("../models/runningHistory");
+const { ObjectId } = require("mongodb");
 
 class RunningHistoryController {
 	static async addRunningHistory(req, res, next) {
@@ -12,7 +13,9 @@ class RunningHistoryController {
 	}
 
 	static async getRunningHistories(req, res, next) {
+		console.log("MAsuk");
 		try {
+			console.log(req.user.id, ">>>>");
 			const data = await Model.getRunningHistories(req.user.id);
 			return res.json({ data });
 		} catch (error) {

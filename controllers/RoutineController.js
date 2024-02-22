@@ -79,7 +79,7 @@ class RoutineController {
         .aggregate([
           {
             $match: {
-              _id: new ObjectId("65d42418fef264df0075bf42"),
+              _id: new ObjectId(req.user.id),
             },
           },
           {

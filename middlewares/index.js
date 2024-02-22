@@ -16,7 +16,7 @@ const authentication = async (req, res, next) => {
 		// console.log(payload, "PAYLOADDDDDDD");
 
 		const user = await db.collection("users").findOne({ email: payload.email });
-		console.log(user, "UUUSEEERRR");
+		// console.log(user, "UUUSEEERRR");
 		// console.log()
 
 		req.user = {
