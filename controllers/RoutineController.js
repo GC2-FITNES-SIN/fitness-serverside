@@ -56,6 +56,12 @@ class RoutineController {
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			};
+
+			const routine = await db.collection("UserRoutines").findOne({ $and: [{ UserId: new ObjectId(req.user.id) }, { RoutineId: new ObjectId(body.RoutineId) }] });
+			console.log(routine, "=========== createuserrouti");
+
+			if (routine) return res.status(400).json({ message: "Routine already exists" });
+
 			const data = await db.collection("UserRoutines").insertOne(routineInput);
 			// console.log(data);
 			res.status(201).json({ data });
